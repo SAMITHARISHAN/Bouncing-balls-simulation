@@ -7,47 +7,44 @@ wn.title("Bouncing ball simulator")
 wn.tracer(0)
 
 balls = []
-number = 0
+
     
-def _bounce(num):
-    for i in range(number):
-        balls.append(turtle.Turtle())
 
+for i in range(10):
+     balls.append(turtle.Turtle())
+
+for ball in balls:
+    ball.shape("circle")
+    ball.color("green")
+    ball.penup()
+    ball.speed(0)
+    x = random.randint(-290, 290)
+    y = random.randint(200, 400)
+    ball.goto(x,y)
+    ball.dy = 0
+    ball.dx = random.randint(-3, 3)
+  
+
+gravity = 0.1
+
+while True:
+    wn.update()
+        
     for ball in balls:
-        ball.shape("circle")
-        ball.color("green")
-        ball.penup()
-        ball.speed(0)
-        x = random.randint(-290, 290)
-        y = random.randint(200, 400)
-        ball.goto(x,y)
-        ball.dy = 0
-        ball.dx = random.randint(-3, 3)
-        return
-
-    gravity = 0.1
-
-    while True:
-        wn.update()
+        ball.dy -= gravity
+        ball.sety(ball.ycor() + ball.dy)
         
-        for ball in balls:
-            ball.dy -= gravity
-            ball.sety(ball.ycor() + ball.dy)
-        
-            ball.setx(ball.xcor() + ball.dx)
+        ball.setx(ball.xcor() + ball.dx)
         #check for wall collision
-            if ball.xcor() > 300:
-                ball.dx *= -1
+        if ball.xcor() > 300:
+            ball.dx *= -1
             
-            if ball.xcor() < -300:
-                ball.dx *= -1
+        if ball.xcor() < -300:
+            ball.dx *= -1
         #check for a bounce
-            if ball.ycor() < -300:
-                ball.dy *= -1
+        if ball.ycor() < -300:
+            ball.dy *= -1
             
-     
-_bounce(num =)  
-
 
 wn.mainloop()
 
